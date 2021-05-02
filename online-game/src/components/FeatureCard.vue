@@ -1,5 +1,5 @@
 <template>
-  <q-card class="my-card" flat bordered>
+  <q-card class="my-card q-pa-md" flat bordered>
     <q-card-actions align="center">
       <q-icon class="circle-icon" size="64px" :name="$props.icon" />
     </q-card-actions>
@@ -92,8 +92,10 @@
 
 <script lang="ts">
 import { Feature, FeatureUpdate } from 'src/models/types/feature'
+import { Activity } from 'src/models/types/activity'
 import { defineComponent, PropType, ref } from 'vue'
 import { Notify } from 'quasar'
+import firebase from 'firebase'
 import useFeature from 'src/use/useFeature'
 import useAuth from 'src/use/useAuth'
 import useDialog from 'src/use/useDialog'
@@ -115,7 +117,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { updateFeature } = useFeature()
+    const { updateFeature, updateFeatureWithTracking } = useFeature()
     const { isAuthenticated } = useAuth()
     const featureNameWritable = ref(props.feature.name)
     const featureExerciseWritable = ref(props.feature.exercise)
@@ -140,7 +142,12 @@ export default defineComponent({
           id: props.featureId,
           reps: +addReps.value + +repsWritable.value
         }
-        await updateFeature(upd).then(() => {
+        const activity: Activity = {
+          type: props.feature.type,
+          count: +addReps.value,
+          time: firebase.firestore.Timestamp.now()
+        }
+        await updateFeatureWithTracking(upd, activity).then(() => {
           repsWritable.value = +repsWritable.value + +addReps.value
           addReps.value = 0
           Notify.create({
@@ -151,7 +158,7 @@ export default defineComponent({
       }
       let einheit = 'Einheit'
       if (+addReps.value > 1) einheit = 'Einheiten'
-      const message = `Bist du dir sicher, dass du von der Übung <strong>"${props.feature.exercise}" <span class="text-red">${addReps.value} ${einheit} </span></strong> gemacht hast? Dann klicke auf OK.`
+      const message = `Bist du dir sicher, dass du von der Übung <strong>${props.feature.exercise} <span class="text-red">${addReps.value} ${einheit} </span></strong> gemacht hast? Dann klicke auf OK.`
       showConfirmDialog('Warte kurz!', message, callback)
     }
 
@@ -249,7 +256,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .my-card {
-  width: 220px;
+  width: 100%;
 }
 
 .head-line {

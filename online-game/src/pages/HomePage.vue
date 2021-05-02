@@ -1,19 +1,21 @@
 <template>
   <q-page class=" q-pa-md items-center justify-evenly">
-    <div class="q-pa-md row items-start q-gutter-md">
-      <div v-for="(feature, id) in getFeatures" :key="feature.name">
+    <div class="q-pa-md row items-start">
+      <div class="col-3 q-px-sm" v-for="(feature, id) in getFeatures" :key="feature.name">
         <feature-card
           :feature="feature"
           :featureId="id"
           v-on:click-details="showDetailsDialog(feature.type)"
           :icon="getIcon(feature.type)" />
       </div>
+      <q-separator vertical inset />
     </div>
+
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent } from 'vue'
 import FeatureCard from 'src/components/FeatureCard.vue'
 import useFeature from 'src/use/useFeature'
 import useDialog from 'src/use/useDialog'
@@ -25,21 +27,8 @@ export default defineComponent({
     FeatureCard
   },
   setup () {
-    const { getFeatures } = useFeature()
+    const { getFeatures, getIcon } = useFeature()
     const { showFeatureDialog } = useDialog()
-
-    const icons = reactive({
-      attack: 'eva-flash',
-      defense: 'eva-shield',
-      health: 'eva-heart',
-      healing: 'eva-activity'
-    })
-    const getIcon = (type: FeatureType) => {
-      if (!Object.keys(icons).includes(type)) {
-        return 'unknown'
-      }
-      return icons[type]
-    }
 
     function showDetailsDialog (type: FeatureType) {
       showFeatureDialog(type)

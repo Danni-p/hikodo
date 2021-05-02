@@ -28,10 +28,24 @@ export default function useGetters () {
     return result
   }
 
+  const getIcon = (type: FeatureType) => {
+    const icons = {
+      attack: 'eva-flash',
+      defense: 'eva-shield',
+      health: 'eva-heart',
+      healing: 'eva-activity'
+    }
+    if (!Object.keys(icons).includes(type)) {
+      return 'unknown'
+    }
+    return icons[type]
+  }
+
   return {
     getFeatures: computed(() => getters.getFeatures),
     getDetailsText,
     getFeatureByType,
-    getFeatureById
+    getFeatureById,
+    getIcon
   }
 }

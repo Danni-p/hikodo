@@ -1,26 +1,33 @@
 <template>
-  <q-layout view="hHh lpR fff">
+  <q-layout view="hHh lpr fFr">
     <q-header v-if="isAuthenticated">
       <q-toolbar>
-        <q-btn
+        <!-- <q-btn
           flat
           dense
           icon="eva-menu-outline"
           aria-label="Menu"
           class="q-mr-sm"
           @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-        <q-toolbar-title>Himmelfahrts-Kop-Do</q-toolbar-title>
+        /> -->
+        <q-toolbar-title>HiKoDo</q-toolbar-title>
+        <q-btn
+          flat
+          label="Logout"
+          dense
+          @click="logout()"
+          />
       </q-toolbar>
     </q-header>
     <q-drawer
-      v-if="isAuthenticated"
-      v-model="leftDrawerOpen"
+      v-if="drawerVisible"
+      side="right"
+      v-model="drawerOpen"
       show-if-above
       bordered
       content-class="bg-white"
     >
-      <left-menu />
+      <activity-list />
     </q-drawer>
 
     <q-page-container>
@@ -30,20 +37,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import LeftMenu from '../components/LeftMenu.vue'
+import { defineComponent, computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import ActivityList from '../components/ActivityList.vue'
 import useAuth from '../use/useAuth'
 
 export default defineComponent({
   name: 'MainLayout',
-  components: { LeftMenu },
+  components: { ActivityList },
   setup () {
-    const { isAuthenticated } = useAuth()
-    const leftDrawerOpen = ref(false)
+    const { currentRoute } = useRouter()
+    const { isAuthenticated, logout } = useAuth()
+    const drawerVisible = computed(() => {
+      console.log('compute', currentRoute.value.name)
+      if (currentRoute.value.name === 'Home') {
+        return true
+      } else {
+        return false
+      }
+    })
+    const drawerOpen = ref(false)
 
     return {
-      leftDrawerOpen,
-      isAuthenticated
+      drawerVisible,
+      drawerOpen,
+      toggleRightDrawer () {
+        drawerOpen.value = !drawerOpen.value
+      },
+      isAuthenticated,
+      logout
     }
   }
 })

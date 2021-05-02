@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import useAuth from '../../use/useAuth'
+import useAuth from 'src/use/useAuth'
 
 export default defineComponent({
   setup () {

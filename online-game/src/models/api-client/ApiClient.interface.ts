@@ -1,4 +1,5 @@
 // GEN-IMPORTS
+import { ActivityServiceInterface } from './activity-service'
 import { AuthServiceInterface } from './auth-service'
 import { FeatureServiceInterface } from './feature-service'
 
@@ -11,4 +12,5 @@ export interface ApiClientInterface {
   // GEN-PROPERTIES
   authService: AuthServiceInterface
   featureService: FeatureServiceInterface
+  activityService: ActivityServiceInterface
 }
