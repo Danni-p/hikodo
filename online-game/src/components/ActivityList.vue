@@ -34,7 +34,7 @@ export default defineComponent({
   },
   setup () {
     const { getActivities, removeAllActivities } = useActivity()
-    const { isAuthenticated } = useAuth() 
+    const { isAuthenticated } = useAuth()
 
     const activities = computed(() => {
       const acts = Object.values(getActivities.value)

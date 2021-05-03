@@ -15,7 +15,7 @@ export default function useGetters () {
   const getFeatureByType = (type: FeatureType) => {
     const result = Object.values(getters.getFeatures).find((val) => val.type === type)
     if (!result) {
-      throw Error('Feature does not exist in Database!')
+      throw Error(`Feature ${type} does not exist in Database!`)
     }
     return result
   }

@@ -2,6 +2,7 @@
 import { ActivityServiceInterface } from './activity-service'
 import { AuthServiceInterface } from './auth-service'
 import { FeatureServiceInterface } from './feature-service'
+import { ProfileServiceInterface } from './profile-service'
 
 /**
  * @Name ApiClientInterface
@@ -13,4 +14,5 @@ export interface ApiClientInterface {
   authService: AuthServiceInterface
   featureService: FeatureServiceInterface
   activityService: ActivityServiceInterface
+  profileService: ProfileServiceInterface
 }

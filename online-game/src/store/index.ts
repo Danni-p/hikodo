@@ -8,15 +8,20 @@ import { FeatureStateInterface } from './module-feature/state'
 import { Store as ActivityStore, activityModule } from './module-activity'
 import { ActivityStateInterface } from './module-activity/state'
 
+import { Store as ProfileStore, profileModule } from './module-profile'
+import { ProfileStateInterface } from './module-profile/state'
+
 export interface StateInterface {
   authState: AuthStateInterface;
   featureState: FeatureStateInterface;
   activityState: ActivityStateInterface;
+  profileState: ProfileStateInterface;
 }
 
 export type Store = AuthStore<Pick<StateInterface, 'authState'>> &
                     FeatureStore<Pick<StateInterface, 'featureState'>> &
-                    ActivityStore<Pick<StateInterface, 'activityState'>>;
+                    ActivityStore<Pick<StateInterface, 'activityState'>> &
+                    ProfileStore<Pick<StateInterface, 'profileState'>>;
 
 // provide typings for `this.$store`
 declare module '@vue/runtime-core' {
@@ -32,7 +37,8 @@ export const store = createStore({
   modules: {
     authModule,
     featureModule,
-    activityModule
+    activityModule,
+    profileModule
   },
   // enable strict mode (adds overhead!)
   // for dev mode and --debug builds only

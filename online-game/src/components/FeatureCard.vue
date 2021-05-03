@@ -270,7 +270,4 @@ export default defineComponent({
     border-radius: 50%;
 }
 
-.test {
-  color: red;
-}
 </style>
