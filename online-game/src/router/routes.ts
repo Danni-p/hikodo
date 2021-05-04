@@ -11,6 +11,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/HomePage.vue')
       },
       {
+        path: 'boss-fight',
+        name: 'BossFight',
+        component: () => import('pages/BossFightPage.vue')
+      },
+      {
         path: 'login',
         name: 'Login',
         component: () => import('pages/LoginPage.vue'),

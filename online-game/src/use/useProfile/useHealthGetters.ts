@@ -34,7 +34,7 @@ export default function useHealthGetters () {
 
   return {
     getTotalHealthBoostInPercent: computed(() => Math.ceil(_totalHealthBoostInPercent())),
-    getTotalHealthBoost: computed(() => Math.ceil(_totalHealthBoost())),
+    getTotalHealthBoost: computed(() => _totalHealthBoost()),
     _totalHealthBoost,
     _totalHealthMaxBoost,
     _totalHealthBoostInPercent

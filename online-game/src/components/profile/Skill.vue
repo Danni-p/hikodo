@@ -17,9 +17,9 @@
 </template>
 
 <script lang="ts">
-import { FeatureType } from 'src/models/types/feature'
+import { FeatureType } from '../../models/types/feature'
 import { defineComponent/* , PropType */ } from 'vue'
-import useFeature from 'src/use/useFeature'
+import useFeature from '../../use/useFeature'
 import useProfile from '../../use/useProfile'
 
 export default defineComponent({

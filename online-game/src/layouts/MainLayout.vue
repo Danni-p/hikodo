@@ -10,9 +10,24 @@
           class="q-mr-sm"
           @click="leftDrawerOpen = !leftDrawerOpen"
         /> -->
-        <q-toolbar-title>HiKoDo</q-toolbar-title>
+        <q-toolbar-title>
+          <q-btn
+            flat
+            class="q-px-md"
+            label="HiKoDo"
+            dense
+            :to="{name: 'Home'}" />
+        </q-toolbar-title>
         <q-btn
           flat
+          class="q-px-md"
+          label="Endkampf"
+          dense
+          :to="{name: 'BossFight'}"
+          />
+        <q-btn
+          flat
+          class="q-px-md"
           label="Logout"
           dense
           @click="logout()"

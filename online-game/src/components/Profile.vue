@@ -22,8 +22,8 @@
   <div class="center q-pt-lg">
     <div class="text-h6">Stärkestufen</div>
     <special-skill :featureType="'attack'" name="Drachenfeuer" :level="getAttackSkillLevel"/>
-    <special-skill :featureType="'defense'" name="Panzerung" :level="getAttackSkillLevel"/>
-    <special-skill :featureType="'healing'" name="Heilzauber" :level="getAttackSkillLevel"/>
+    <special-skill :featureType="'defense'" name="Panzerung" :level="getDefenseSkillLevel"/>
+    <special-skill :featureType="'healing'" name="Heilzauber" :level="getHealingSkillLevel"/>
   </div>
 </div>
 </template>
