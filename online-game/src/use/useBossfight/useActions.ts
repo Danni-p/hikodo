@@ -33,10 +33,45 @@ export default function useActions () {
     store.commit(MutationTypes.SET_ATTACK_STATE, attackState)
   }
 
+  function setHealers (healers: number) {
+    store.commit(MutationTypes.SET_HEALERS, healers)
+  }
+
+  function setForce (force: number) {
+    store.commit(MutationTypes.SET_FORCE, force)
+  }
+
+  function setSelectedAttackTechniqueId (id: string) {
+    store.commit(MutationTypes.SET_SELECTED_ATTACK_TECHNIQUE_ID, id)
+  }
+
+  function setTotalAttackDamage (damage: number) {
+    store.commit(MutationTypes.SET_TOTAL_ATTACK_REPS, damage)
+  }
+
+  function setAttackCycles (cycles: number) {
+    store.commit(MutationTypes.SET_ATTACK_CYCLES, cycles)
+  }
+
+  function setBossHPs (hps: number) {
+    store.commit(MutationTypes.SET_BOSS_HPS, hps)
+  }
+
+  function setMyHPs (hps: number) {
+    store.commit(MutationTypes.SET_MY_HPS, hps)
+  }
+
   return {
     initializeFight,
     resetFight,
     setFightState,
-    setAttackState
+    setAttackState,
+    setHealers,
+    setForce,
+    setAttackCycles,
+    setSelectedAttackTechniqueId,
+    setTotalAttackDamage,
+    setBossHPs,
+    setMyHPs
   }
 }

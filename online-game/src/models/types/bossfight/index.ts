@@ -9,6 +9,8 @@ export enum AttackState {
   CHOOSE_TECHNIQUE = 'choose_technique',
   CHOOSE_HEALING = 'choose_healing',
   ACTION_TIME = 'action_time',
+  COLLECT_DAMAGE = 'collect_damage',
+  FINISH_ATTACK = 'finish_attack',
   UNKNOWN ='unknown'
 }
 

@@ -36,10 +36,11 @@ export default defineComponent({
   setup () {
     const healerNr = ref(0)
 
-    const { getAttendees, setAttackState } = useBossfight()
+    const { getAttendees, setAttackState, setHealers } = useBossfight()
 
     function handleSetHealer () {
-      setAttackState(AttackState.ACTION_TIME)
+      setAttackState(AttackState.CHOOSE_TECHNIQUE)
+      setHealers(healerNr.value)
     }
 
     return {

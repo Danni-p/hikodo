@@ -33,7 +33,7 @@ export default defineComponent({
   props: {
   },
   setup () {
-    const { initializeFight, setFightState, setAttackState } = useBossfight()
+    const { initializeFight, setFightState, setAttackState, setForce } = useBossfight()
     const $q = useQuasar()
     const attendees = ref(1)
     const attendeesRef = ref()
@@ -45,7 +45,8 @@ export default defineComponent({
       initializeFight(attendees.value)
       setTimeout(() => {
         setFightState(attackOrDefense())
-        setAttackState(AttackState.CHOOSE_TECHNIQUE)
+        setAttackState(AttackState.CHOOSE_HEALING)
+        setForce(1)
         $q.loading.hide()
       }, 4000)
       $q.loading.show({

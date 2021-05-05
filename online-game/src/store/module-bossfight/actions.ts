@@ -25,11 +25,15 @@ export type Actions = {
 export const actions: ActionTree<BossfightStateInterface, StateInterface> & Actions = {
   [ActionTypes.RESET_FIGHT] ({ commit }) {
     commit(MutationTypes.RESET_ATTENDEES, undefined)
+    commit(MutationTypes.RESET_HEALERS, undefined)
     commit(MutationTypes.RESET_FIGHT_STATE, undefined)
     commit(MutationTypes.RESET_BOSS_HPS, undefined)
     commit(MutationTypes.RESET_MY_HPS, undefined)
     commit(MutationTypes.RESET_BOSS_MAX_HPS, undefined)
     commit(MutationTypes.RESET_MY_MAX_HPS, undefined)
     commit(MutationTypes.RESET_ATTACK_STATE, undefined)
+    commit(MutationTypes.RESET_FORCE, undefined)
+    commit(MutationTypes.RESET_SELECTED_ATTACK_TECHNIQUE_ID, undefined)
+    commit(MutationTypes.RESET_TOTAL_ATTACK_REPS, undefined)
   }
 }

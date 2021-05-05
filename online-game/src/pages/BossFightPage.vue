@@ -1,7 +1,7 @@
 <template>
   <q-page class=" q-pa-md flex row items-center justify-evenly">
     <div class="col-12 col-sm-3 col-md-2 q-px-lg">
-      <health-bar :hps="getBossHPs" color="primary" name="Boss" srcPath="boss.svg" />
+      <health-bar :hps="getBossHPs" :maxhps="getBossMaxHPs" color="primary" name="Boss" srcPath="boss.svg" />
     </div>
     <q-card class="col-12 col-sm-6 col-md-8">
       <q-card-section>
@@ -9,7 +9,7 @@
       </q-card-section>
     </q-card>
     <div class="col-12 col-sm-3 col-md-2 q-px-lg">
-      <health-bar :hps="getMyHPs" color="secondary" name="Drache" srcPath="dragons/dragon3.svg"/>
+      <health-bar :hps="getMyHPs" :maxhps="getMyMaxHPs" color="secondary" name="Drache" srcPath="dragons/dragon3.svg"/>
     </div>
   </q-page>
 </template>
@@ -27,9 +27,12 @@ export default defineComponent({
     HealthBar
   },
   setup () {
-    const { getBossHPs, getMyHPs } = useBossfight()
+    const { getBossHPs, getMyHPs, getMyMaxHPs, getBossMaxHPs } = useBossfight()
     return {
-      getBossHPs, getMyHPs
+      getBossHPs,
+      getMyHPs,
+      getMyMaxHPs,
+      getBossMaxHPs
     }
   }
 })

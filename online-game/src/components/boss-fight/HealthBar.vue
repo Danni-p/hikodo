@@ -5,14 +5,14 @@
       <img class="circle-icon" :src="$props.srcPath">
   </q-avatar>
   </div>
-  <div class="text-subtitle2 text-center" style="width">{{$props.hps}} LP</div>
-  <q-linear-progress :color="$props.color" size="25px" :value="hps" class="q-mt-sm" />
+  <div class="text-subtitle2 text-center" style="width">{{$props.hps}} LP / {{$props.maxhps}} LP</div>
+  <q-linear-progress :color="$props.color" size="25px" :value="hpsInPercent" class="q-mt-sm" />
   <div class="text-subtitle1 text-center" style="width">{{$props.name}}</div>
 </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 /* import useBossfight from '../../use/useBossfight' */
 
 export default defineComponent({
@@ -29,15 +29,21 @@ export default defineComponent({
       type: Number,
       required: true
     },
+    maxhps: {
+      type: Number,
+      required: true
+    },
     srcPath: {
       type: String,
       required: true
     }
   },
-  setup () {
-    /*     const { setAttendees } = useBossfight() */
+  setup (props) {
+    /* const { getBossHPs, getMyHPs } = useBossfight() */
+    const hpsInPercent = computed(() => props.hps / props.maxhps)
 
     return {
+      hpsInPercent
     }
   }
 })

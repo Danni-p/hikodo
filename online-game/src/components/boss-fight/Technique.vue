@@ -45,11 +45,11 @@ export default defineComponent({
       required: true
     }
   },
-  setup () {
-    const { setAttackState } = useBossfight()
+  setup (props) {
+    const { setAttackState, setSelectedAttackTechniqueId } = useBossfight()
     function handleSelectTechnique () {
-      console.log('1234')
-      setAttackState(AttackState.CHOOSE_HEALING)
+      setSelectedAttackTechniqueId(props.technique.id)
+      setAttackState(AttackState.ACTION_TIME)
     }
     return {
       handleSelectTechnique
