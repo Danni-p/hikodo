@@ -1,4 +1,4 @@
-import { AttackState, FightState, Technique } from 'src/models/types/bossfight'
+import { AttackState, DefenseState, FightState, Technique } from 'src/models/types/bossfight'
 import { GetterTree } from 'vuex'
 import { StateInterface } from '../index'
 import { BossfightStateInterface } from './state'
@@ -8,6 +8,7 @@ export type Getters = {
   getHealers (state: BossfightStateInterface): number;
   getFightState (state: BossfightStateInterface): FightState;
   getAttackState (state: BossfightStateInterface): AttackState;
+  getDefenseState (state: BossfightStateInterface): DefenseState;
   getBossHPs (state: BossfightStateInterface): number;
   getMyHPs (state: BossfightStateInterface): number;
   getBossMaxHPs (state: BossfightStateInterface): number;
@@ -18,6 +19,7 @@ export type Getters = {
   getSelectedAttackTechniqueId (state: BossfightStateInterface): string;
   getTotalAttackReps (state: BossfightStateInterface): number;
   getAttackCycles (state: BossfightStateInterface): number;
+  getDefenseFailes (state: BossfightStateInterface): number;
 }
 
 export const getters: GetterTree<BossfightStateInterface, StateInterface> & Getters = {
@@ -35,6 +37,10 @@ export const getters: GetterTree<BossfightStateInterface, StateInterface> & Gett
 
   getAttackState (state) {
     return state.attackState
+  },
+
+  getDefenseState (state) {
+    return state.defenseState
   },
 
   getBossHPs (state) {
@@ -73,5 +79,8 @@ export const getters: GetterTree<BossfightStateInterface, StateInterface> & Gett
   },
   getAttackCycles (state) {
     return state.attackCycles
+  },
+  getDefenseFailes (state) {
+    return state.defenseFailes
   }
 }

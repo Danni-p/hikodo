@@ -26,6 +26,7 @@ import { defineComponent, ref } from 'vue'
 import { integerRule } from 'src/validations'
 import useBossfight from 'src/use/useBossfight'
 import { AttackState } from 'src/models/types/bossfight'
+/* import { getAttackImage } from 'src/utils/bossfightUtils' */
 /* import { Technique } from '../../models/types/bossfight' */
 
 export default defineComponent({
@@ -36,11 +37,20 @@ export default defineComponent({
   setup () {
     const healerNr = ref(0)
 
-    const { getAttendees, setAttackState, setHealers } = useBossfight()
+    const {
+      getAttendees,
+      setAttackState,
+      setHealers
+    } = useBossfight()
 
     function handleSetHealer () {
-      setAttackState(AttackState.CHOOSE_TECHNIQUE)
       setHealers(healerNr.value)
+      console.log('heal', getAttendees.value, healerNr.value)
+      if (+healerNr.value === +getAttendees.value) {
+        setAttackState(AttackState.HEALING_TIME)
+      } else {
+        setAttackState(AttackState.CHOOSE_TECHNIQUE)
+      }
     }
 
     return {

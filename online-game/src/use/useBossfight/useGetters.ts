@@ -3,14 +3,14 @@ import { computed } from 'vue'
 // import { useRouter } from 'vue-router'
 import { useStore } from 'src/store'
 import { MutationTypes } from 'src/store/module-bossfight/mutations'
-import { AttackState, FightState } from 'src/models/types/bossfight'
-import { calculateHealing, calculateMyDamageEffect } from 'src/utils/bossfightUtils'
+import { AttackState, DefenseState, FightState } from 'src/models/types/bossfight'
+import { calculateHealing, calculateMyDamageEffect, calculateBossDamageEffect } from 'src/utils/bossfightUtils'
 import useProfile from 'src/use/useProfile'
 
 export default function useGetters () {
   // const router = useRouter()
   const { getters, commit } = useStore()
-  const { getTotalHealingBoost, getTotalAttackBoost } = useProfile()
+  const { getTotalHealingBoost, getTotalAttackBoost, getTotalDefenseBoost } = useProfile()
 
   const getAttendees = computed(() => {
     const attendeesLocStore = localStorage.getItem('attendees')
@@ -54,6 +54,17 @@ export default function useGetters () {
       commit(MutationTypes.SET_ATTACK_STATE, <AttackState>attackStateLocStore)
     }
     return getters.getAttackState
+  })
+
+  const getDefenseState = computed(() => {
+    const defenseStateLocStore = localStorage.getItem('defenseState')
+    if (!defenseStateLocStore) {
+      return getters.getDefenseState
+    }
+    if (defenseStateLocStore !== getters.getDefenseState) {
+      commit(MutationTypes.SET_DEFENSE_STATE, <DefenseState>defenseStateLocStore)
+    }
+    return getters.getDefenseState
   })
 
   const getBossHPs = computed(() => {
@@ -112,6 +123,7 @@ export default function useGetters () {
   })
 
   const getSelectedAttackTechniqueId = computed(() => {
+    console.log('it commits')
     const techIdLocStore = localStorage.getItem('selectedAttackTechniqueId')
     if (!techIdLocStore) {
       return getters.getSelectedAttackTechniqueId
@@ -153,15 +165,47 @@ export default function useGetters () {
     return getters.getAttackCycles
   })
 
+  const getDefenseFailes = computed(() => {
+    const defenseFailesLocStore = localStorage.getItem('defenseFailes')
+    if (!defenseFailesLocStore) {
+      return getters.getDefenseFailes
+    }
+    if (defenseFailesLocStore !== getters.getDefenseFailes.toString()) {
+      commit(MutationTypes.SET_DEFENSE_FAILES, Number.parseInt(defenseFailesLocStore))
+    }
+    return getters.getDefenseFailes
+  })
+
   const healedHPs = computed(() => calculateHealing(getHealers.value, getTotalHealingBoost.value, getForce.value))
 
-  const damageHPs = computed(() => calculateMyDamageEffect(getTotalAttackReps.value, getTotalAttackBoost.value, getMyTechniqueById(getSelectedAttackTechniqueId.value), getForce.value))
+  const damageHPs = computed(() => {
+    try {
+      return calculateMyDamageEffect(getTotalAttackReps.value, getTotalAttackBoost.value, getMyTechniqueById(getSelectedAttackTechniqueId.value), getForce.value)
+    } catch (err) {
+      return 0
+    }
+  })
+
+  const damageBossHPs = computed(() => calculateBossDamageEffect(getAttendees.value, getDefenseFailes.value, getTotalDefenseBoost.value, getBossTechniqueById(getSelectedAttackTechniqueId.value)))
+
+  function getBossAttackIds () {
+    return getters.getBossTechniques.map((val) => val.id)
+  }
+
+  function getBossTechniqueById (id: string) {
+    const technique = getters.getBossTechniques.find((val) => val.id === id)
+    if (!technique) {
+      throw Error('Technique not found by id!')
+    }
+    return technique
+  }
 
   return {
     getAttendees,
     getHealers,
     getFightState,
     getAttackState,
+    getDefenseState,
     getBossHPs,
     getMyHPs,
     getBossMaxHPs,
@@ -170,10 +214,14 @@ export default function useGetters () {
     getAttackCycles,
     getSelectedAttackTechniqueId,
     getMyTechniqueById,
+    getBossTechniqueById,
     getTotalAttackReps,
     healedHPs,
     damageHPs,
+    damageBossHPs,
+    getDefenseFailes,
     getMyTechniques: computed(() => getters.getMyTechniques),
-    getBossTechniques: computed(() => getters.getBossTechniques)
+    getBossTechniques: computed(() => getters.getBossTechniques),
+    getBossAttackIds
   }
 }

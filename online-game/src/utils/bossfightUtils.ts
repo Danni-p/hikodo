@@ -5,7 +5,7 @@ export function attackOrDefense () {
   if (head) {
     return FightState.ATTACK
   } else {
-    return FightState.ATTACK
+    return FightState.DEFENSE
   }
 }
 
@@ -26,4 +26,33 @@ export function calculateHealing (healersNr: number, healingBoost: number, force
 export function calculateMyDamageEffect (reps: number, attackBoost: number, technique: Technique, force: number) {
   console.log('calcDamageEffect', reps, attackBoost, technique.baseDamage, force)
   return Math.ceil(reps * (1 + attackBoost + technique.baseDamage) * force)
+}
+
+export function calculateBossDamageEffect (attendeeNr: number, failes: number, defenseBoost: number, technique: Technique) {
+  console.log('calcDamageEffect', failes, defenseBoost, technique.baseDamage, technique.additionalDamage)
+  const faktor = 5
+
+  let addPart = technique.additionalDamage - (attendeeNr - failes) * (1 + defenseBoost) * faktor
+  if (addPart < 0) addPart = 0
+  return technique.baseDamage + addPart
+}
+
+export function getAttackImage (id: string) {
+  if (id === '1') {
+    return 'attacks/fire.svg'
+  } else if (id === '2') {
+    return 'attacks/tail.svg'
+  } else {
+    return 'attacks/tail.svg'
+  }
+}
+
+export function chooseRandomId (ids: string[]) {
+  const len = ids.length
+  if (len === 0) {
+    throw Error('No Id was transferred!')
+  }
+
+  const idx = Math.floor(Math.random() * (len))
+  return ids[idx]
 }

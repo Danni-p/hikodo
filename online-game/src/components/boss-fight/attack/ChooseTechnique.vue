@@ -11,8 +11,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import TechniqueComp from '../Technique.vue'
+import TechniqueComp from './AttackTechnique.vue'
 import useBossfight from 'src/use/useBossfight'
+import { getAttackImage } from 'src/utils/bossfightUtils'
 /* import { Technique } from '../../models/types/bossfight' */
 
 export default defineComponent({
@@ -23,13 +24,6 @@ export default defineComponent({
   },
   setup () {
     const { getMyTechniques } = useBossfight()
-    const getAttackImage = (id: string) => {
-      if (id === '1') {
-        return 'attacks/fire.svg'
-      } else if (id === '2') {
-        return 'attacks/tail.svg'
-      }
-    }
     return {
       getMyTechniques,
       getAttackImage

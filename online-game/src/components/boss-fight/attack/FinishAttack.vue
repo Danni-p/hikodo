@@ -45,7 +45,7 @@ import { defineComponent/* , computed */ } from 'vue'
 import useBossfight from 'src/use/useBossfight'
 /* import useProfile from 'src/use/useProfile'
 import { calculateHealing, calculateMyDamageEffect } from 'src/utils/bossfightUtils' */
-import { AttackState, FightState } from 'src/models/types/bossfight'
+import { AttackState, DefenseState, FightState } from 'src/models/types/bossfight'
 
 export default defineComponent({
   components: {
@@ -61,9 +61,7 @@ export default defineComponent({
       getForce,
       healedHPs,
       damageHPs,
-      /* getMyTechniqueById,
-      getTotalAttackReps,
-      getSelectedAttackTechniqueId, */
+      setDefenseState,
       setAttackCycles,
       getAttackCycles
     } = useBossfight()
@@ -78,7 +76,8 @@ export default defineComponent({
       setFightState(FightState.DEFENSE)
       setAttackState(AttackState.CHOOSE_HEALING)
       setForce(1)
-      setAttackCycles(0)
+      setAttackCycles(Math.round(Math.random() * 3))
+      setDefenseState(DefenseState.CHOOSE_TECHNIQUE)
     }
 
     return {

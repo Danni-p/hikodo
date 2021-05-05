@@ -27,13 +27,19 @@ import { integerGreaterZeroRule } from '../../validations'
 import useBossfight from '../../use/useBossfight'
 import { attackOrDefense } from '../../utils/bossfightUtils'
 import { useQuasar } from 'quasar'
-import { AttackState } from 'src/models/types/bossfight'
+import { AttackState, DefenseState } from 'src/models/types/bossfight'
 
 export default defineComponent({
   props: {
   },
   setup () {
-    const { initializeFight, setFightState, setAttackState, setForce } = useBossfight()
+    const {
+      initializeFight,
+      setFightState,
+      setAttackState,
+      setDefenseState,
+      setForce
+    } = useBossfight()
     const $q = useQuasar()
     const attendees = ref(1)
     const attendeesRef = ref()
@@ -46,11 +52,12 @@ export default defineComponent({
       setTimeout(() => {
         setFightState(attackOrDefense())
         setAttackState(AttackState.CHOOSE_HEALING)
+        setDefenseState(DefenseState.CHOOSE_TECHNIQUE)
         setForce(1)
         $q.loading.hide()
-      }, 4000)
+      }, 2500)
       $q.loading.show({
-        message: 'Es wird nun berechnet, wer der mutigste ist, der den ersten Angriff startet...'
+        message: 'Es wird nun berechnet, wer der mutigste ist und den ersten Angriff startet...'
       })
     }
     return {

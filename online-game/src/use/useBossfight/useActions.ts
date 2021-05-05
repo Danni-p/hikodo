@@ -1,6 +1,6 @@
 
 // import { useRouter } from 'vue-router'
-import { AttackState, FightState } from 'src/models/types/bossfight'
+import { AttackState, DefenseState, FightState } from 'src/models/types/bossfight'
 import { useStore } from 'src/store'
 import { MutationTypes } from 'src/store/module-bossfight/mutations'
 import { ActionTypes } from 'src/store/module-bossfight/actions'
@@ -33,6 +33,10 @@ export default function useActions () {
     store.commit(MutationTypes.SET_ATTACK_STATE, attackState)
   }
 
+  function setDefenseState (defenseState: DefenseState) {
+    store.commit(MutationTypes.SET_DEFENSE_STATE, defenseState)
+  }
+
   function setHealers (healers: number) {
     store.commit(MutationTypes.SET_HEALERS, healers)
   }
@@ -53,6 +57,10 @@ export default function useActions () {
     store.commit(MutationTypes.SET_ATTACK_CYCLES, cycles)
   }
 
+  function setDefenseFailes (failes: number) {
+    store.commit(MutationTypes.SET_DEFENSE_FAILES, failes)
+  }
+
   function setBossHPs (hps: number) {
     store.commit(MutationTypes.SET_BOSS_HPS, hps)
   }
@@ -66,12 +74,14 @@ export default function useActions () {
     resetFight,
     setFightState,
     setAttackState,
+    setDefenseState,
     setHealers,
     setForce,
     setAttackCycles,
     setSelectedAttackTechniqueId,
     setTotalAttackDamage,
     setBossHPs,
-    setMyHPs
+    setMyHPs,
+    setDefenseFailes
   }
 }

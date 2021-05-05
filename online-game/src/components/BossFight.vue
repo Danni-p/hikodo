@@ -1,8 +1,11 @@
 <template>
-  <div>
+  <div >
     <start v-show="getFightState === 'unknown'"/>
     <defense v-show="getFightState === 'defense'"/>
     <attack v-show="getFightState === 'attack'"/>
+    <div v-show="getFightState === 'win'">
+      You win!!!
+    </div>
   </div>
 </template>
 

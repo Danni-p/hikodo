@@ -52,7 +52,7 @@
 import { defineComponent, ref, Ref, computed } from 'vue'
 import useBossfight from 'src/use/useBossfight'
 import { integerRule } from 'src/validations'
-import { AttackState } from 'src/models/types/bossfight'
+import { AttackState, FightState } from 'src/models/types/bossfight'
 /* import { Technique } from '../../models/types/bossfight' */
 
 export default defineComponent({
@@ -66,6 +66,7 @@ export default defineComponent({
       setAttackState,
       setTotalAttackDamage,
       setBossHPs,
+      setFightState,
       setMyHPs,
       getMyHPs,
       getMyMaxHPs,
@@ -94,6 +95,9 @@ export default defineComponent({
       const myHealth = getMyHPs.value + healedHPs.value
       setBossHPs(bossHealth < 0 ? 0 : bossHealth)
       setMyHPs(myHealth < getMyMaxHPs.value ? myHealth : getMyMaxHPs.value)
+      if (getBossHPs.value === 0) {
+        setFightState(FightState.WIN)
+      }
     }
 
     return {

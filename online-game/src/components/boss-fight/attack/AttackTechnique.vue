@@ -31,8 +31,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { AttackState, Technique } from '../../models/types/bossfight'
-import useBossfight from '../../use/useBossfight'
+import { AttackState, Technique } from 'src/models/types/bossfight'
+import useBossfight from 'src/use/useBossfight'
 
 export default defineComponent({
   props: {

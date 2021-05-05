@@ -12,8 +12,9 @@
 </template>
 
 <script lang="ts">
+import { FightState } from 'src/models/types/bossfight'
 import { defineComponent, computed } from 'vue'
-/* import useBossfight from '../../use/useBossfight' */
+import useBossfight from '../../use/useBossfight'
 
 export default defineComponent({
   props: {
@@ -39,11 +40,27 @@ export default defineComponent({
     }
   },
   setup (props) {
-    /* const { getBossHPs, getMyHPs } = useBossfight() */
+    const { getFightState } = useBossfight()
     const hpsInPercent = computed(() => props.hps / props.maxhps)
 
+    const attackOrDefense = computed(() => {
+      if (props.name === 'Boss') {
+        if (getFightState.value === FightState.ATTACK) {
+          return 'Verteidigung'
+        } else {
+          return 'Angriff'
+        }
+      } else {
+        if (getFightState.value === FightState.ATTACK) {
+          return 'Angriff'
+        } else {
+          return 'Verteidigung'
+        }
+      }
+    })
     return {
-      hpsInPercent
+      hpsInPercent,
+      attackOrDefense
     }
   }
 })
