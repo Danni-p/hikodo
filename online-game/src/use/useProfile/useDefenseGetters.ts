@@ -37,7 +37,7 @@ export default function useDefenseGetters () {
 
   return {
     getTotalDefenseBoostInPercent: computed(() => Math.ceil(_totalDefenseBoostInPercent())),
-    getTotalDefenseBoost: computed(() => Math.ceil(_totalDefenseBoost())),
+    getTotalDefenseBoost: computed(() => _totalDefenseBoost()),
     _totalDefenseBoost,
     _totalDefenseMaxBoost,
     _totalDefenseBoostInPercent

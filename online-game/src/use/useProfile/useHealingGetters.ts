@@ -39,7 +39,7 @@ export default function useHealingGetters () {
 
   return {
     getTotalHealingBoostInPercent: computed(() => Math.ceil(_totalHealingBoostInPercent())),
-    getTotalHealingBoost: computed(() => Math.ceil(_totalHealingBoost())),
+    getTotalHealingBoost: computed(() => _totalHealingBoost()),
     _totalHealingBoost,
     _totalHealingMaxBoost,
     _totalHealingBoostInPercent

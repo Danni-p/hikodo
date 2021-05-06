@@ -14,6 +14,8 @@ export const integerGreaterZeroRule = (val: string) => !!integerGreaterZeroPatte
 
 export const passwordRule = (val: string) => val.length >= 6 || 'Password is too short!'
 
+export const smaller60Rule = (val: string) => Number.parseInt(val) < 60 || 'Hey eine Minute hat nur 60 Sekunden!'
+
 export const isValidRule = (rule: ((val: string) => boolean | string), val: string) => {
   return typeof rule(val) !== 'string'
 }

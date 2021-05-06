@@ -26,9 +26,10 @@ export enum DefenseState {
 
 export enum DamageClass {
   GIGANZISCH = 'gigantisch',
-  VERNUENFTIG = 'vernünftig',
+  STARK = 'stark',
   GANZ_SOLIDE = 'ganz solide',
-  PEINLICH_NIEDRICH ='peinlich niedrich'
+  SCHWACH = 'schwach',
+  SCHLAPP ='schlapp'
 }
 
 export interface Technique {

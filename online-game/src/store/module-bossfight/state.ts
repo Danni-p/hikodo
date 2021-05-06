@@ -39,59 +39,125 @@ function state (): BossfightStateInterface {
       {
         name: 'Feuer spucken',
         exercise: 'Liegestütze',
-        description: 'Mache saubere Liegestütze',
-        baseDamage: 0.2,
-        additionalDamage: 0,
+        description: '...',
+        baseDamage: 10,
+        additionalDamage: 1.5,
         id: '1',
         minutes: 1,
         seconds: 0,
         damageClass: DamageClass.GIGANZISCH
       },
       {
-        name: 'Schwanzschlag',
-        exercise: 'Kniebeuge',
-        description: 'Mache saubere Kniebeuge',
-        baseDamage: 0.1,
-        additionalDamage: 0,
+        name: 'Kratzen',
+        exercise: 'Mountainclimbers',
+        description: '...',
+        baseDamage: 3,
+        additionalDamage: 1.1,
         id: '2',
         minutes: 1,
         seconds: 0,
+        damageClass: DamageClass.STARK
+      },
+      {
+        name: 'Beißen',
+        exercise: 'Beiß-Plank',
+        description: '...',
+        baseDamage: 5,
+        additionalDamage: 1.3,
+        id: '3',
+        minutes: 1,
+        seconds: 0,
         damageClass: DamageClass.GANZ_SOLIDE
+      },
+      {
+        name: 'Flügelschlag',
+        exercise: 'Schwimmer',
+        description: '...',
+        baseDamage: 8,
+        additionalDamage: 2,
+        id: '4',
+        minutes: 1,
+        seconds: 0,
+        damageClass: DamageClass.SCHWACH
+      },
+      {
+        name: 'Schwanzschlag',
+        exercise: 'Kniebeuge',
+        description: '...',
+        baseDamage: 5,
+        additionalDamage: 1,
+        id: '5',
+        minutes: 1,
+        seconds: 0,
+        damageClass: DamageClass.SCHLAPP
       }
     ],
     bossTechniques: [
       {
+        name: 'Furzattacke',
+        exercise: 'Beine heben',
+        description: '...',
+        baseDamage: 50,
+        additionalDamage: 1000,
+        id: '8',
+        minutes: 5,
+        seconds: 0,
+        damageClass: DamageClass.GIGANZISCH
+      },
+      {
         name: 'Hammerschlag',
         exercise: 'Wu-chi',
-        description: 'Mache eine tiefe Wu Chi',
-        baseDamage: 20,
-        additionalDamage: 150,
+        description: '...',
+        baseDamage: 50,
+        additionalDamage: 1000,
         id: '6',
         minutes: 1,
         seconds: 30,
         damageClass: DamageClass.GIGANZISCH
       },
       {
-        name: 'Erdbeben',
-        exercise: 'Arme seitlich federn',
-        description: 'Federe mit deinen Armen kurz und schnell.',
-        baseDamage: 20,
-        additionalDamage: 150,
-        id: '7',
-        minutes: 2,
-        seconds: 0,
-        damageClass: DamageClass.GIGANZISCH
-      },
-      {
-        name: 'Laserauge',
-        exercise: 'Schulterbrücke',
-        description: 'Knie und hacken zusammen. Po soweit wie möglich nach oben.',
+        name: 'Tentakelpeitsche',
+        exercise: 'Plank',
+        description: '...',
         baseDamage: 20,
         additionalDamage: 150,
         id: '8',
         minutes: 5,
         seconds: 0,
-        damageClass: DamageClass.GIGANZISCH
+        damageClass: DamageClass.STARK
+      },
+      {
+        name: 'Laserauge',
+        exercise: 'Schulterbrücke',
+        description: '...',
+        baseDamage: 20,
+        additionalDamage: 150,
+        id: '8',
+        minutes: 5,
+        seconds: 0,
+        damageClass: DamageClass.GANZ_SOLIDE
+      },
+      {
+        name: 'Psychogrollen',
+        exercise: 'Baum',
+        description: '...',
+        baseDamage: 20,
+        additionalDamage: 150,
+        id: '8',
+        minutes: 5,
+        seconds: 0,
+        damageClass: DamageClass.SCHWACH
+      },
+      {
+        name: 'Erdbeben',
+        exercise: 'Arme seitlich federn',
+        description: '...',
+        baseDamage: 0,
+        additionalDamage: 150,
+        id: '7',
+        minutes: 2,
+        seconds: 0,
+        damageClass: DamageClass.SCHLAPP
       }
     ]
   }

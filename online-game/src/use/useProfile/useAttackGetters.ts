@@ -37,7 +37,7 @@ export default function useAttackGetters () {
 
   return {
     getTotalAttackBoostInPercent: computed(() => Math.ceil(_totalAttackBoostInPercent())),
-    getTotalAttackBoost: computed(() => Math.ceil(_totalAttackBoost())),
+    getTotalAttackBoost: computed(() => _totalAttackBoost()),
     _totalAttackBoost,
     _totalAttackMaxBoost,
     _totalAttackBoostInPercent

@@ -19,6 +19,19 @@
             :to="{name: 'Home'}" />
         </q-toolbar-title>
         <q-btn
+            flat
+            class="q-px-md"
+            label="Statistik"
+            dense
+            :to="{name: 'Statistics'}" />
+        <q-btn
+          flat
+          class="q-px-md"
+          label="Halteworkout"
+          dense
+          :to="{name: 'DefenseGame'}"
+          />
+        <q-btn
           flat
           class="q-px-md"
           label="Endkampf"

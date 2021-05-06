@@ -13,7 +13,8 @@
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.5",
     "firebase": "^8.4.3",
-    "quasar": "^2.0.0-beta.1"
+    "quasar": "^2.0.0-beta.1",
+    "vue3-charts": "^1.1.11"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
